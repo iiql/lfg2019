@@ -1,28 +1,28 @@
 var express = require('express')
 var app = express()
+
+var jwt = require('jsonwebtoken')
+
 const port = 3000
 
-app.get('/', function (req, res) {
-    res.send('hello world')
+app.get('/v1/user/token/generate/client/', function (req, res) {
+    var token = jwt.sign({user: req.userID}, 'client')
+    res.send(token)
 })
 
-app.get('/user/token/generate/client/', function (req, res) {
-    //TODO: Finish
-    res.send('/user/token/generate/client/')
+app.get('/v1/user/token/generate/transaction/', function (req, res) {
+    var transactionToken = jwt.sign({user: req.userID}, 'transaction')
+    res.send(transactionToken)
 })
 
-app.get('/user/token/generate/transaction/', function (req, res) {
+app.get('/v1/user/token/consume/', function (req, res) {
     //TODO: Finish
-    res.send('/user/token/generate/transaction/')
-})
+    var decoded = jwt.verify(req.token, 'transaction', function(err, decoded) {
+        console.log(decoded.user);
+    })
 
-app.get('/user/token/revoke/client/', function (req, res) {
-    //TODO: Finish
-    res.send('/user/token/revoke/client/')
-})
+    var query = req.query
 
-app.get('/user/token/consume/', function (req, res) {
-    //TODO: Finish
     res.send('/user/token/consume/')
 })
 
