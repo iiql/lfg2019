@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<script type="text/javascript" src="instascan.min.js" ></script>
+		<script>
+	        function setToken() {
+	        	var token = document.getElementById("textbox").value;
+	        }
+
+	        var http = require("http");
+
+			var options = {
+			    host: "lfg-idclient.herokuapp.com",
+			    path: "/user/token/generate",
+			    method: "GET",
+			    headers: {
+			        "token": token
+			    }
+			};
+
+			var req = http.request(options, function (res) {
+			    var acceptance = false;
+
+			    res.on("data", function (data) {
+			        acceptance = data;
+			        // save all the data from response
+			    });
+			    res.on("end", function () {
+			        console.log(responseString); 
+			        // print to console when response ends
+			    });
+			});
+
+		</script> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    	<!-- <script src="jquery.min.js"></script>
+    	<script src="app.js"></script> -->
+    	<title>My ID</title>
+	</head>
+	<body>
+		<div class="a">
+			<h1>My ID</h1>
+		</div>
+		<video id="preview"></video>
+		<script>
+        let scanner = new Instascan.Scanner(
+            {
+                video: document.getElementById('preview')
+            }
+        );
+        scanner.addListener('scan', function(content) {
+            alert('Do you want to open this page?: ' + content);
+            window.open(content, "_blank");
+        });
+        Instascan.Camera.getCameras().then(cameras => 
+        {
+            if(cameras.length > 0){
+                scanner.start(cameras[0]);
+            } else {
+                console.error("Please enable Camera!");
+            }
+        });
+    </script>
+    	<div class="textbox">
+	    	<form>
+	        	<input id="textbox" type="text" />
+		    </form>
+		    <button type="button" onclick="setToken()">Enter Token</button>
+		</div>
+		<p>Use this to scan QR</p>
+	</body>
+</html>
