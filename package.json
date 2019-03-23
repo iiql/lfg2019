@@ -6,6 +6,7 @@
   "scripts": {
     "doc": "jsdoc --configure .jsdoc.json .",
     "lint": "eslint --ext .js,.jsx,.jsdoc --fix .",
+    "serve-web": "http-server ./web",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/bigjohnson2019/lfg2019#readme",
   "devDependencies": {
     "eslint": "^5.15.3",
+    "http-server": "^0.11.1",
     "jsdoc": "^3.5.5"
   }
 }
