@@ -1,7 +1,10 @@
 div.a {
   text-align: center;
   font-family: "Verdana";
-  background-color:Aqua;
+  background-color:#003B70;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 div.b {
