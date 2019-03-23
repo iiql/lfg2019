@@ -20,5 +20,8 @@
   "devDependencies": {
     "eslint": "^5.15.3",
     "jsdoc": "^3.5.5"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
   }
 }
