@@ -2,17 +2,28 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<script src="../node_modules/qrcode/build/qrcode.min.js"></script>
+		<script>
+			window.createQR = function() {
+				QRCode.toCanvas(document.getElementById('canvas'), 'sample text', {
+					width: 340,
+					height: 340
+				}, function (error) {
+					if (error) console.error(error)
+						console.log('success!');
+				});
+			};
+		</script> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     	<!-- <script src="jquery.min.js"></script>
     	<script src="app.js"></script> -->
-    	<title>Hello World</title>
+    	<title>My ID</title>
 	</head>
-	<body>
+	<body onload="createQR();">
 		<div class="a">
-			<h1>MYCLIENT</h1>
+			<h1>My ID</h1>
 		</div>
-		<div class="b">
-			<!-- QR CODE HERE -->
-		</div>
-		<p>Present this code</p>
+		<canvas id="canvas"></canvas>
+		<p>Present this code to confirm your information</p>
 	</body>
 </html>
