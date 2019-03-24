@@ -1,0 +1,6 @@
+# Exclude directories designated for dependency management:
+/node_modules
+**/node_modules
+
+# Ignore all compiled files:
+/doc
