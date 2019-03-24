@@ -1,4 +1,7 @@
 function setup() {
+    userID = prompt("Please enter a user id", "")
+    var params = 'userID=' + userID.toString()
+
     var clientToken = "";
     const requestClientID = new XMLHttpRequest();
     const reqClientURL = 'http://localhost:3000/v1/user/token/generate/client/';
@@ -9,7 +12,7 @@ function setup() {
         }
     }
 
-    requestClientID.open("GET", reqClientURL, true);
+    requestClientID.open("GET", reqClientURL+'?'+params, true);
     requestClientID.send();
 
     var transactionToken = "";
