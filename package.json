@@ -20,5 +20,8 @@
   "devDependencies": {
     "eslint": "^5.15.3",
     "jsdoc": "^3.5.5"
+  },
+  "dependencies": {
+    "format-unicorn": "^1.1.1"
   }
 }
