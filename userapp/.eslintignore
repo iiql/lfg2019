@@ -1,0 +1,7 @@
+# Ignore all NPM modules:
+/node_modules
+**/node_modules
+
+# Ignore all compiled scripts:
+/doc
+

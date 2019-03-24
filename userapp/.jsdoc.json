@@ -1,0 +1,15 @@
+{
+  "tags": {
+    "dictionaries": [ "jsdoc" ]
+  },
+  "opts": {
+    "recurse": true,
+    "verbose": true,
+    "readme": "README.md",
+    "destination": "doc"
+  },
+  "source": {
+    "excludePattern": "doc|node_modules|/[.].+",
+    "includePattern": ".+\\.js$"
+  }
+}
