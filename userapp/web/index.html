@@ -13,13 +13,15 @@
 
 				modal.style.display = "block";
 
-				var accepted = "decline";
+				var accepted = false;
 
 				accept.onclick = function() {
-					accepted = "accept";
+					accepted = true;
+					modal.style.display = "none";
 				}
+
 				decline.onclick = function() {
-					accepted = "decline";
+					modal.style.display = "none";
 				}
 
 				// When the user clicks on <span> (x), close the modal
@@ -53,8 +55,8 @@
 				document.getElementById("token").innerHTML = token;
 			}
 
-			window.createQR = function() {
-				QRCode.toCanvas(document.getElementById('canvas'), token, {
+			function createQR() {
+				QRCode.toCanvas(document.getElementById('canvas'), 'hello', {
 					width: 340,
 					height: 340
 				}, function (error) {
@@ -62,23 +64,6 @@
 						console.log('success!');
 				});
 			};
-
-
-			var connection = new WebSocket('ws://html5rocks.websocket.org/echo', ['soap', 'xmpp']);
-
-			// When the connection is open, send some data to the server
-			connection.onopen = function () {
-			  connection.send('Ping'); // Send the message 'Ping' to the server
-			};
-
-			// Log errors
-			connection.onerror = function (error) {
-			  console.log('WebSocket Error ' + error);
-			};
-
-			connection.onclose = function() {
-				connection = WebSocket('ws://html5rocks.websocket.org/echo', ['soap', 'xmpp']);
-			}
 
 			// Log messages from the server
 			connection.onmessage = function (e) {
@@ -110,31 +95,26 @@
 				connection.send(accepted);
 
 			};
-		</script> 
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    	<!-- <script src="jquery.min.js"></script>
-    	<script src="app.js"></script> -->
-    	<title>My ID</title>
+  	<title>My ID</title>
 	</head>
-	<body onload="createQR();">
+	<body onload = "createQR()">
 		<div class="a">
 			<h1>My ID</h1>
 		</div>
 		<!-- Button trigger modal -->
-		<button type="button" id='onbutton' class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="openModal()">
+		<button type="button" id='onbutton' class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="openModal()">
 		  Launch demo modal
 		</button>
 
 		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Information request:</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Decline">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Accept">
+		        <h5 class="modal-title" id="myModalLabel">Information request:</h5>
+		        <button type="button" class="close" data-dismiss="modal">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
@@ -142,8 +122,8 @@
 		      	<p1 id="prompt-body"></p1>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" id="accept" class="btn btn-primary" data-dismiss="modal">Accept</button>
-		        <button type="button" id="decline" class="btn btn-primary" data-dismiss="modal">Decline</button>
+		        <button type="button" id="accept" class="btn btn-primary">Accept</button>
+		        <button type="button" id="decline" class="btn btn-primary">Decline</button>
 		      </div>
 		    </div>
 		  </div>
