@@ -1,35 +1,43 @@
-var http = require("http");
+function setup() {
+    var clientToken = "";
+    const requestClientID = new XMLHttpRequest();
+    const reqClientURL = 'http://localhost:3000/v1/user/token/generate/client/';
 
-const requestClientID = new XMLHttpRequest();
-const reqURL = 'http://localhost:3000/user/token/generate/client/';
-requestClientID.open("GET", reqURL);
-requestClientID.send();
-
-requestClientID.onreadystatechange=function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var clientToken = requestClientID.responseText;
+    requestClientID.onreadystatechange=function() {
+        if (this.readyState == 4 && this.status == 200) {
+            clientToken = requestClientID.responseText;
+        }
     }
-}
 
-const requestTransactionID = new XMLHttpRequest();
-const reqURL = 'http://localhost:3000/user/token/generate/transaction/';
-requestTransactionID.open("GET", reqURL);
-requestTransactionID.send();
+    requestClientID.open("GET", reqClientURL, true);
+    requestClientID.send();
 
-requestTransactionID.onreadystatechange=function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var transactionToken = requestTransactionID.responseText;
+    var transactionToken = "";
+    const requestTransactionID = new XMLHttpRequest();
+    const reqTransactionURL = 'http://localhost:3000/v1/user/token/generate/transaction/';
+
+    requestTransactionID.onreadystatechange=function() {
+        if (this.readyState == 4 && this.status == 200) {
+            transactionToken = requestTransactionID.response;
+
+            if(transactionToken != null) {
+                document.getElementById("token").innerHTML = transactionToken;
+            }
+
+            generateQRCode(transactionToken);
+        }
     }
+
+    requestTransactionID.open("GET", reqTransactionURL, true);
+    requestTransactionID.send();
 }
 
-if(transactionToken != null) {
-    document.getElementById("token").innerHTML = token;
+function generateQRCode(transactionToken) {
+    QRCode.toCanvas(document.getElementById('canvas'), transactionToken, {
+        width: 340,
+        height: 340
+    }, function (error) {
+        if (error) console.error(error)
+            console.log('success!');
+    });
 }
-
-QRCode.toCanvas(document.getElementById('canvas'), transactionToken, {
-    width: 340,
-    height: 340
-}, function (error) {
-    if (error) console.error(error)
-        console.log('success!');
-});
