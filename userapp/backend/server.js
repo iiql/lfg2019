@@ -29,11 +29,11 @@ app.get('/v1/user/token/generate/notifications/', function (req, res) {
 
 app.get('/v1/user/token/consume/', function (req, res) {
     //TODO: Finish
-    var decoded = jwt.verify(req.token, 'transaction', function(err, decoded) {
+    var decoded = jwt.verify(req.query.token, 'transaction', function(err, decoded) {
         console.log(decoded.user);
     })
 
-    var query = req.query
+    var query = req.query.q
 
     // notifications.push(x)
     res.send('/user/token/consume/')

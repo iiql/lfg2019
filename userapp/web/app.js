@@ -33,6 +33,39 @@ function setup() {
 
     requestTransactionID.open("GET", reqTransactionURL, true);
     requestTransactionID.send();
+
+    var check = true;
+
+    /*
+    while (check) {
+        const requestNotification = new XMLHttpRequest();
+        const reqTransactionURL = 'http://localhost:3000/v1/user/token/generate/notifications/';
+    
+        requestNotification.onreadystatechange=function() {
+            if (this.readyState == 4 && this.status == 200) {
+                resp = requestNotification.response;
+    
+                if(resp != 'No notifications.') {
+                    check = false;
+                    if (confirm(resp)) {
+                        // Send confirmation to server
+                    }
+                    else {
+                        // Send denial to server
+                    }
+                }
+            }
+        }
+    
+        requestTransactionID.open("GET", reqTransactionURL, true);
+        requestTransactionID.send();
+
+        await sleep(3000);
+    }*/
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function generateQRCode(transactionToken) {
