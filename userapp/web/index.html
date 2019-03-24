@@ -29,80 +29,16 @@
 				  modal.style.display = "none";
 				}
 			};
-
-			var http = require("http");
-
-			var options = {
-			    host: "lfg-idclient.herokuapp.com",
-			    path: "/user/token/generate",
-			    method: "GET",
-			};
-
-			var req = http.request(options, function (res) {
-			    var token = "";
-
-			    res.on("data", function (data) {
-			        token += data;
-			        // save all the data from response
-			    });
-			    res.on("end", function () {
-			        console.log(responseString); 
-			        // print to console when response ends
-			    });
-			});
-
-			if(token != null) {
-				document.getElementById("token").innerHTML = token;
-			}
-
-			function createQR() {
-				QRCode.toCanvas(document.getElementById('canvas'), 'hello', {
-					width: 340,
-					height: 340
-				}, function (error) {
-					if (error) console.error(error)
-						console.log('success!');
-				});
-			};
-
-			// Log messages from the server
-			connection.onmessage = function (e) {
-			  var promptString = e.data;
-			  // Get the modal
-			  	document.getElementById("prompt-body").innerHTML = promptString;
-
-				var modal = document.getElementById('myModal');
-				var accept = document.getElementById('accept');
-				var decline = document.getElementById('decline');
-				// Get the <span> element that closes the modal
-				var span = document.getElementsByClassName("close")[0];
-
-				modal.style.display = "block";
-
-				var accepted = "decline";
-
-				accept.onclick = function() {
-					accepted = "accept";
-				}
-				decline.onclick = function() {
-					accepted = "decline";
-				}
-
-				// When the user clicks on <span> (x), close the modal
-				span.onclick = function() {
-				  modal.style.display = "none";
-				}
-				connection.send(accepted);
-
-			};
 		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   	<title>My ID</title>
 	</head>
-	<body onload = "createQR()">
+
+	<body>
 		<div class="a">
 			<h1>My ID</h1>
 		</div>
+
 		<!-- Button trigger modal -->
 		<button type="button" id='onbutton' class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="openModal()">
 		  Launch demo modal
@@ -128,8 +64,12 @@
 		    </div>
 		  </div>
 		</div>
+
+		<!-- QR Code -->
 		<canvas id="canvas"></canvas>
 		<p id="token">Token</p>
 		<p>Present this code to confirm your information</p>
 	</body>
+
+	<!--<script src="app.js"></script>-->
 </html>
