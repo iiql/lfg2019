@@ -151,7 +151,6 @@ function parseAs(tokens, callback) {
     return callback(null, out);
   });
 }
-parseAs(tokenizeQuery("equal_to(age, 85) AS int"), function(err, res) { console.log(err + "\n" + JSON.stringify(res)); });
 
 
 /**
