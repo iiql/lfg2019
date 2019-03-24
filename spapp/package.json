@@ -7,6 +7,7 @@
     "doc": "jsdoc --configure .jsdoc.json .",
     "lint": "eslint --ext .js,.jsx,.jsdoc --fix .",
     "serve": "node ./backend/server.js",
+    "serve-web": "http-server . -o -c-1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,9 +20,13 @@
   "homepage": "https://github.com/bigjohnson2019/lfg2019#readme",
   "devDependencies": {
     "eslint": "^5.15.3",
+    "http-server": "^0.11.1",
     "jsdoc": "^3.5.5"
   },
   "dependencies": {
-    "format-unicorn": "^1.1.1"
+    "format-unicorn": "^1.1.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "qrcode": "^1.3.3"
   }
 }
