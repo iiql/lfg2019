@@ -75,3 +75,8 @@ html, body{
   text-decoration: none;
   cursor: pointer;
 }
+
+#token {
+  font-size: 12px;
+  word-wrap: break-word;
+}

@@ -3,6 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<script src="../node_modules/qrcode/build/qrcode.min.js"></script>
+		<script src="app.js"></script>
 		<script>
 			function openModal() {
 				var modal = document.getElementById('myModal');
@@ -34,7 +35,7 @@
   	<title>My ID</title>
 	</head>
 
-	<body>
+	<body onload='setup()'>
 		<div class="a">
 			<h1>My ID</h1>
 		</div>
@@ -70,6 +71,4 @@
 		<p id="token">Token</p>
 		<p>Present this code to confirm your information</p>
 	</body>
-
-	<!--<script src="app.js"></script>-->
 </html>
