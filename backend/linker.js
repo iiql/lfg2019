@@ -46,9 +46,9 @@ function linkTree(tree, callback) {
             return linkTree(tree.else, function(err3, res3) {
               if(err3 !== null)
                 return callback(err3, null);
-              return callback(null, { type: "tree", conditional: res, then: res2, else: res3 });
+              return callback(null, { type: "if", conditional: res, then: res2, else: res3 });
             });
-          return callback(null, { type: "tree", conditional: res, then: res2 });
+          return callback(null, { type: "if", conditional: res, then: res2 });
         });
       });
 
