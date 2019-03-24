@@ -42,26 +42,22 @@
 		<div class="a">
 			<h1>My ID</h1>
 		</div>
-		<video id="preview"></video>
+
+		<video autoplay="true" id="preview"></video>		
 		<script>
-        let scanner = new Instascan.Scanner(
-            {
-                video: document.getElementById('preview')
-            }
-        );
-        scanner.addListener('scan', function(content) {
-            alert('Do you want to open this page?: ' + content);
-            window.open(content, "_blank");
-        });
-        Instascan.Camera.getCameras().then(cameras => 
-        {
-            if(cameras.length > 0){
-                scanner.start(cameras[0]);
-            } else {
-                console.error("Please enable Camera!");
-            }
-        });
-    </script>
+			var video = document.querySelector("#preview");
+
+			if (navigator.mediaDevices.getUserMedia) {
+			  navigator.mediaDevices.getUserMedia({ video: true })
+				.then(function (stream) {
+				  video.srcObject = stream;
+				})
+				.catch(function (err0r) {
+				  console.log("Something went wrong!");
+				});
+			}
+		</script>
+		
     	<div class="textbox">
 	    	<form>
 	        	<input id="textbox" type="text" />
